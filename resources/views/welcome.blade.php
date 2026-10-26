@@ -624,6 +624,124 @@
     </div>
 
     <!-- ======================================================== -->
+    <!-- CUSTOM UI MODAL: UBAH NOMOR MEJA -->
+    <!-- ======================================================== -->
+    <div x-show="showTableModal" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        <div @click.away="showTableModal = false" 
+             class="bg-white rounded-3xl p-5 w-full max-w-xs shadow-2xl border border-stone-200 space-y-4 animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-orange-100 text-parjo-orange flex items-center justify-center text-lg font-black">
+                    <i class="fa-solid fa-chair"></i>
+                </div>
+                <div>
+                    <h3 class="font-black text-sm text-stone-900 leading-tight">Ganti Nomor Meja</h3>
+                    <p class="text-[11px] text-stone-400">Sesuaikan posisi duduk Anda</p>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[11px] font-bold text-stone-600 mb-1.5">Nomor Meja Baru</label>
+                <div class="relative flex items-center">
+                    <span class="absolute left-3.5 text-stone-400 text-xs font-bold font-mono">NO.</span>
+                    <input type="number" x-model="tempTableNumber" min="1" max="99" autofocus
+                           @keydown.enter="saveTableNumber()"
+                           class="w-full pl-12 pr-4 py-2.5 bg-stone-50 border-2 border-stone-200 focus:border-parjo-orange focus:bg-white text-base font-black text-stone-900 rounded-xl outline-none transition text-center">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-1">
+                <button type="button" @click="showTableModal = false" 
+                        class="w-full py-2.5 rounded-xl border border-stone-200 text-xs font-bold text-stone-600 hover:bg-stone-100 transition">
+                    Batal
+                </button>
+                <button type="button" @click="saveTableNumber()" 
+                        class="w-full py-2.5 rounded-xl bg-parjo-orange hover:bg-parjo-darkorange text-white text-xs font-black shadow-md transition active:scale-95">
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- CUSTOM UI MODAL: CATATAN ITEM KERANJANG -->
+    <!-- ======================================================== -->
+    <div x-show="showNoteModal" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        <div @click.away="showNoteModal = false" 
+             class="bg-white rounded-3xl p-5 w-full max-w-sm shadow-2xl border border-stone-200 space-y-4 animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center justify-between border-b border-stone-100 pb-2">
+                <div>
+                    <h3 class="font-black text-sm text-stone-900">Catatan Khusus Koki</h3>
+                    <p class="text-[11px] text-stone-400 truncate max-w-[220px]" x-text="activeNoteItem?.name"></p>
+                </div>
+                <button @click="showNoteModal = false" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div>
+                <textarea x-model="tempItemNote" rows="3" placeholder="Contoh: Kuah dipisah, pedas sedang, jangan pakai bawang goreng..."
+                          class="w-full bg-stone-50 border-2 border-stone-200 focus:border-parjo-orange focus:bg-white text-xs font-semibold text-stone-900 rounded-xl p-3 outline-none transition resize-none"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+                <button type="button" @click="showNoteModal = false" 
+                        class="w-full py-2.5 rounded-xl border border-stone-200 text-xs font-bold text-stone-600 hover:bg-stone-100 transition">
+                    Batal
+                </button>
+                <button type="button" @click="saveItemNote()" 
+                        class="w-full py-2.5 rounded-xl bg-parjo-orange hover:bg-parjo-darkorange text-white text-xs font-black shadow-md transition active:scale-95">
+                    Terapkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- CUSTOM UI MODAL: KONFIRMASI KOSONGKAN KERANJANG -->
+    <!-- ======================================================== -->
+    <div x-show="showConfirmClearModal" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        <div @click.away="showConfirmClearModal = false" 
+             class="bg-white rounded-3xl p-5 w-full max-w-xs shadow-2xl border border-stone-200 text-center space-y-3 animate-in fade-in zoom-in-95 duration-200">
+            <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <div>
+                <h3 class="font-black text-sm text-stone-900">Kosongkan Pesanan?</h3>
+                <p class="text-xs text-stone-500 mt-0.5">Semua menu yang sudah Anda pilih akan dihapus dari keranjang.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-2">
+                <button type="button" @click="showConfirmClearModal = false" 
+                        class="w-full py-2.5 rounded-xl border border-stone-200 text-xs font-bold text-stone-600 hover:bg-stone-100 transition">
+                    Batal
+                </button>
+                <button type="button" @click="executeClearCart()" 
+                        class="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-black shadow-md transition active:scale-95">
+                    Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
     <!-- MODAL SUKSES ORDER -->
     <!-- ======================================================== -->
     <div x-show="showSuccessModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
@@ -675,6 +793,14 @@ function tasteParjoApp() {
         appliedVoucher: null,
         showSuccessModal: false,
         lastOrderId: '',
+
+        // Custom UI Modal Dialogs
+        showTableModal: false,
+        tempTableNumber: 3,
+        showNoteModal: false,
+        activeNoteItem: null,
+        tempItemNote: '',
+        showConfirmClearModal: false,
 
         quickNotesList: [
             'Pedas Banget',
@@ -994,17 +1120,26 @@ function tasteParjoApp() {
         },
 
         editItemNotes(item) {
-            const newNote = prompt('Catatan koki untuk ' + item.name + ':', item.notes || '');
-            if (newNote !== null) {
-                item.notes = newNote.trim();
+            this.activeNoteItem = item;
+            this.tempItemNote = item.notes || '';
+            this.showNoteModal = true;
+        },
+
+        saveItemNote() {
+            if (this.activeNoteItem) {
+                this.activeNoteItem.notes = this.tempItemNote.trim();
             }
+            this.showNoteModal = false;
         },
 
         clearCartConfirm() {
-            if (confirm('Kosongkan semua pesanan?')) {
-                this.cart = [];
-                this.goToView('catalog');
-            }
+            this.showConfirmClearModal = true;
+        },
+
+        executeClearCart() {
+            this.cart = [];
+            this.showConfirmClearModal = false;
+            this.goToView('catalog');
         },
 
         goToView(view) {
@@ -1013,10 +1148,16 @@ function tasteParjoApp() {
         },
 
         editTablePrompt() {
-            const table = prompt('Nomor Meja:', this.tableNumber);
-            if (table && !isNaN(table)) {
-                this.tableNumber = parseInt(table);
+            this.tempTableNumber = this.tableNumber;
+            this.showTableModal = true;
+        },
+
+        saveTableNumber() {
+            const val = parseInt(this.tempTableNumber);
+            if (!isNaN(val) && val > 0) {
+                this.tableNumber = val;
             }
+            this.showTableModal = false;
         },
 
         openOriginalMenuModal() {
