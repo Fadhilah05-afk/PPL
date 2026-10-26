@@ -731,29 +731,128 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- MODAL SUKSES ORDER -->
+    <!-- MODAL / NOTA DIGITAL (ESB DIGITAL RECEIPT STYLE) -->
     <!-- ======================================================== -->
-    <div x-show="showSuccessModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl p-6 w-full max-w-sm text-center shadow-2xl space-y-4 border-2 border-parjo-ink">
-            <div class="w-14 h-14 bg-parjo-green text-parjo-yellow rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-hard">
-                <i class="fa-solid fa-check"></i>
+    <div x-show="showSuccessModal" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        
+        <div @click.away="showSuccessModal = false"
+             class="bg-white rounded-3xl w-full max-w-[420px] max-h-[90vh] overflow-y-auto shadow-2xl border border-stone-200 text-stone-900 animate-in fade-in zoom-in-95 duration-200 p-6 flex flex-col justify-between">
+            
+            <div class="space-y-5">
+                <!-- Top Header: Date & Order Number -->
+                <div class="flex items-start justify-between">
+                    <div>
+                        <div class="text-xs text-stone-500 font-medium">Date</div>
+                        <div class="text-sm font-bold text-stone-900 mt-0.5" x-text="orderDateStr || '26 Oct 2026, 19:33'"></div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-stone-500 font-medium">Order Number</div>
+                        <div class="flex items-center justify-end space-x-1.5 mt-0.5 cursor-pointer text-stone-900 hover:text-parjo-orange" 
+                             @click="navigator.clipboard.writeText(lastOrderId); alert('Order Number disalin!')">
+                            <i class="fa-regular fa-copy text-parjo-orange text-xs"></i>
+                            <span class="text-sm font-black tracking-wide" x-text="lastOrderId"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outlet Location & Table Number -->
+                <div class="space-y-3.5 pt-1">
+                    <!-- Outlet Location -->
+                    <div class="flex items-start space-x-3">
+                        <div class="w-7 h-7 flex items-center justify-center text-parjo-orange text-lg flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-stone-500 font-medium leading-none">Outlet Location</div>
+                            <div class="text-sm font-black text-stone-900 mt-1">PARJO (Pancong & Burjo)</div>
+                        </div>
+                    </div>
+
+                    <!-- Table Number -->
+                    <div class="flex items-start space-x-3">
+                        <div class="w-7 h-7 flex items-center justify-center text-parjo-orange text-lg flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-chair"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-stone-500 font-medium leading-none">Table Number</div>
+                            <div class="text-sm font-black text-stone-900 mt-1" x-text="tableNumber"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="border-t border-stone-200"></div>
+
+                <!-- Ordered Items Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-3.5">
+                        <h3 class="text-sm font-extrabold text-stone-900">Ordered Items</h3>
+                        <button type="button" @click="resetAndBackToHome()" 
+                                class="border border-parjo-orange text-parjo-orange hover:bg-orange-50 px-3 py-1 rounded-full text-xs font-bold transition">
+                            Reorder
+                        </button>
+                    </div>
+
+                    <!-- Items List -->
+                    <div class="space-y-3">
+                        <template x-for="item in confirmedCart" :key="item.cartId">
+                            <div class="flex items-start justify-between text-xs">
+                                <div class="flex-1 pr-2">
+                                    <span class="font-black text-stone-900" x-text="item.qty + 'x'"></span>
+                                    <span class="font-medium text-stone-800 ml-1.5" x-text="item.name"></span>
+                                    <div x-show="item.notes" class="text-[10px] text-stone-400 mt-0.5 italic ml-5" x-text="'Catatan: ' + item.notes"></div>
+                                </div>
+                                <div class="font-bold text-stone-900 flex-shrink-0" x-text="formatRupiah(item.price * item.qty)"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="border-t border-stone-200"></div>
+
+                <!-- Fees & Payment Details -->
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between text-stone-700">
+                        <span class="font-medium">Platform Fee</span>
+                        <span class="font-bold text-stone-900" x-text="formatRupiah(serviceFee)"></span>
+                    </div>
+                    <div class="flex justify-between text-stone-700">
+                        <span class="font-medium">Payment Method</span>
+                        <span class="font-extrabold text-stone-900 uppercase" x-text="paymentMethod === 'qris' ? 'QRIS' : 'KASIR'"></span>
+                    </div>
+                    <div x-show="discountAmount > 0" class="flex justify-between text-emerald-600">
+                        <span class="font-medium">Discount Promo</span>
+                        <span class="font-bold" x-text="'-' + formatRupiah(discountAmount)"></span>
+                    </div>
+                </div>
+
+                <!-- Final Total -->
+                <div class="pt-2 border-t border-stone-200 flex justify-between items-baseline">
+                    <span class="text-sm font-extrabold text-stone-900">Total</span>
+                    <span class="text-lg font-black text-parjo-orange" x-text="formatRupiah(confirmedTotal)"></span>
+                </div>
             </div>
-            <div>
-                <h3 class="font-black text-base text-parjo-ink">Tiket Pesanan Diterima!</h3>
-                <p class="text-xs text-stone-500 mt-1">Dapur PARJO sedang memasak pesanan Meja <span class="font-bold text-parjo-ink" x-text="tableNumber"></span>.</p>
+
+            <!-- Bottom Actions -->
+            <div class="mt-6 pt-3 border-t border-stone-100 flex items-center space-x-2">
+                <button @click="showSuccessModal = false" class="w-1/2 py-2.5 rounded-xl border border-stone-200 font-bold text-xs text-stone-600 hover:bg-stone-50 transition">
+                    Tutup
+                </button>
+                <button @click="resetAndBackToHome()" class="w-1/2 py-2.5 rounded-xl bg-parjo-orange hover:bg-parjo-darkorange text-white font-extrabold text-xs transition shadow-md">
+                    Selesai
+                </button>
             </div>
-            <div class="bg-stone-50 p-3 rounded-xl text-left text-xs space-y-1 font-semibold border border-stone-200">
-                <div class="flex justify-between text-stone-500"><span>ORDER TICKET:</span><span class="font-bold text-stone-900" x-text="lastOrderId"></span></div>
-                <div class="flex justify-between text-stone-500"><span>ATAS NAMA:</span><span class="font-bold text-stone-900" x-text="customer.name"></span></div>
-                <div class="flex justify-between text-stone-500"><span>TOTAL:</span><span class="font-bold text-parjo-orange" x-text="formatRupiah(finalTotal)"></span></div>
-            </div>
-            <button @click="resetAndBackToHome()" class="w-full bg-parjo-ink text-white font-black py-3 rounded-xl text-xs uppercase tracking-wider transition">
-                Pesan Menu Lainnya
-            </button>
+
         </div>
     </div>
-
-</div>
 
 <!-- Application Logic -->
 <script>
@@ -782,6 +881,9 @@ function tasteParjoApp() {
         appliedVoucher: null,
         showSuccessModal: false,
         lastOrderId: '',
+        orderDateStr: '',
+        confirmedCart: [],
+        confirmedTotal: 0,
 
         // Custom UI Modal Dialogs
         showTableModal: false,
@@ -1180,7 +1282,18 @@ function tasteParjoApp() {
                 return;
             }
 
-            this.lastOrderId = 'PRJ-' + Math.floor(100000 + Math.random() * 900000);
+            const now = new Date();
+            const day = now.getDate();
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            this.orderDateStr = `${day} ${month} ${year}, ${hours}:${minutes}`;
+            this.lastOrderId = 'PRJ' + Math.random().toString(36).substring(2, 9).toUpperCase();
+            this.confirmedCart = JSON.parse(JSON.stringify(this.cart));
+            this.confirmedTotal = this.finalTotal;
             this.showSuccessModal = true;
         },
 
