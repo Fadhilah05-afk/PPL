@@ -536,22 +536,11 @@
 
                     <!-- Preset Chips Pilihan Rasa Parjo -->
                     <div class="pt-2 border-t border-stone-100">
-                        <label class="block text-[11px] font-semibold font-bold text-stone-400 uppercase tracking-wider mb-2">PILIHAN CEPAT KOKI</label>
-                        <div class="flex flex-wrap gap-1.5 mb-2.5">
-                            <template x-for="chip in quickNotesList" :key="chip">
-                                <button type="button" @click="appendNote(chip)" 
-                                        class="text-[11px] bg-stone-50 hover:bg-orange-50 hover:text-parjo-orange border border-stone-200 hover:border-parjo-orange px-2.5 py-1 rounded-lg font-bold text-stone-600 transition">
-                                    + <span x-text="chip"></span>
-                                </button>
-                            </template>
-                        </div>
-
                         <label class="block text-xs font-bold text-stone-700 mb-1">Instruksi Khusus (Opsional)</label>
                         <input type="text" x-model="modalNotes" placeholder="Contoh: Kuah sedikit, telur setengah matang, es pisah..."
                                class="w-full bg-stone-50 border border-stone-200 text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-parjo-orange font-medium">
                     </div>
 
-                    <!-- Stepper -->
                     <div class="flex items-center justify-between pt-2 border-t border-stone-100">
                         <span class="text-xs font-black text-parjo-ink">Jumlah Porsi</span>
                         <div class="flex items-center space-x-3 bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl">
