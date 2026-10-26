@@ -177,13 +177,14 @@
 
         <!-- Sticky Categorical Tabs: Clean Underline + Tactile Pill System -->
         <div class="sticky top-[59px] z-20 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-stone-200/80">
-            <div class="flex items-center space-x-2 px-4 py-2 overflow-x-auto no-scrollbar scroll-smooth" id="categoryTabContainer">
+            <div class="flex items-center space-x-2 px-4 py-2.5 overflow-x-auto no-scrollbar scroll-smooth" id="categoryTabContainer">
                 <template x-for="cat in categories" :key="cat.id">
                     <button @click="scrollToCategory(cat.id)"
+                            :id="'tab-btn-' + cat.id"
                             :class="activeCategoryId === cat.id 
-                                ? 'bg-parjo-ink text-white font-extrabold shadow-sm' 
-                                : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-400 font-bold'"
-                            class="whitespace-nowrap px-3 py-1.5 rounded-xl text-[11px] uppercase tracking-wider transition duration-150 flex-shrink-0 cursor-pointer">
+                                ? 'bg-black text-white font-black shadow-sm' 
+                                : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-400 font-bold'"
+                            class="whitespace-nowrap px-4 py-2 rounded-full text-xs uppercase tracking-wide transition duration-150 flex-shrink-0 cursor-pointer">
                         <span x-text="cat.name"></span>
                     </button>
                 </template>
@@ -868,12 +869,20 @@ function tasteParjoApp() {
                 });
                 if (current && current !== this.activeCategoryId) {
                     this.activeCategoryId = current;
+                    const tabBtn = document.getElementById('tab-btn-' + current);
+                    if (tabBtn) {
+                        tabBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
                 }
             }, { passive: true });
         },
 
         scrollToCategory(catId) {
             this.activeCategoryId = catId;
+            const tabBtn = document.getElementById('tab-btn-' + catId);
+            if (tabBtn) {
+                tabBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
             const targetEl = document.getElementById('cat-section-' + catId);
             if (targetEl) {
                 const headerOffset = 115;
