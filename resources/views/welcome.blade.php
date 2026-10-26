@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PARJO (Pancong & Burjo) — Digital Ordering</title>
     
-    <!-- Editorial Display & Body Typography -->
+    <!-- Typography: Plus Jakarta Sans / Inter / Poppins (Clean, Crisp, Highly Readable) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -26,20 +26,20 @@
                             green: '#00583E',
                             darkgreen: '#003F2C',
                             yellow: '#EEFD37',
-                            cream: '#FDFBF7',
-                            sand: '#F5EFE6',
-                            ink: '#111315',
-                            muted: '#687076'
+                            cream: '#FFFFFF',
+                            sand: '#F8F9FA',
+                            ink: '#1F2937',
+                            muted: '#6B7280'
                         }
                     },
                     fontFamily: {
-                        display: ['"Syne"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
                         sans: ['"Plus Jakarta Sans"', 'sans-serif']
                     },
                     boxShadow: {
                         'subtle': '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)',
                         'lift': '0 8px 24px -4px rgba(0,0,0,0.08)',
-                        'hard': '3px 3px 0px #111315',
+                        'hard': '3px 3px 0px #1F2937',
                         'hard-orange': '3px 3px 0px #FF4800',
                         'float': '0 12px 36px -4px rgba(255, 72, 0, 0.35)'
                     }
@@ -99,8 +99,8 @@
         <div class="bg-parjo-green text-white px-4 py-2 flex items-center justify-between text-xs border-b border-parjo-darkgreen">
             <div class="flex items-center space-x-2">
                 <span class="w-2 h-2 rounded-full bg-parjo-yellow animate-pulse"></span>
-                <span class="font-mono text-[11px] uppercase tracking-wider text-parjo-yellow">TABLE TICKET:</span>
-                <span class="font-display font-black text-xs tracking-wider">MEJA #<span x-text="tableNumber"></span></span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-parjo-yellow">TABLE TICKET:</span>
+                <span class="font-bold text-xs tracking-wide">MEJA #<span x-text="tableNumber"></span></span>
             </div>
             <div class="flex items-center space-x-2">
                 <span class="text-[10px] text-emerald-200/90 font-medium">Warmindo 24/7</span>
@@ -115,12 +115,12 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2.5">
                     <!-- Brand Logomark: Sharp brutalist badge -->
-                    <div class="w-10 h-10 rounded-xl bg-parjo-orange text-white flex items-center justify-center font-display font-black text-xl shadow-hard border-2 border-parjo-ink flex-shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-parjo-orange text-white flex items-center justify-center font-black text-xl shadow-hard border-2 border-parjo-ink flex-shrink-0">
                         <span>P</span>
                     </div>
                     <div>
                         <div class="flex items-center space-x-1.5">
-                            <h1 class="font-display font-black text-base tracking-tight text-parjo-ink leading-none">PARJO</h1>
+                            <h1 class="font-black text-base tracking-tight text-parjo-ink leading-none">PARJO</h1>
                             <span class="bg-parjo-yellow text-parjo-darkgreen text-[9px] font-black uppercase px-1.5 py-0.5 rounded border border-parjo-darkgreen/30 tracking-wider">PANCONG & BURJO</span>
                         </div>
                         <p class="text-[11px] text-parjo-muted mt-0.5 font-medium flex items-center gap-1">
@@ -163,12 +163,12 @@
                         <span class="text-[9px] font-black uppercase tracking-widest text-parjo-yellow bg-white/10 px-2 py-0.5 rounded-full inline-block mb-1">
                             ★ REKOMENDASI HARI INI
                         </span>
-                        <div class="font-display font-black text-sm tracking-tight text-white">
+                        <div class="font-extrabold text-sm tracking-tight text-white">
                             Butter Beer 13K & Nasi Ayam Kuah Laos
                         </div>
                         <p class="text-[11px] text-emerald-200/90 mt-0.5">Segar berbusa, gurih rempah asli Parjo.</p>
                     </div>
-                    <button @click="scrollToCategory('signature')" class="bg-parjo-yellow text-parjo-ink hover:bg-white text-[11px] font-display font-black px-3 py-1.5 rounded-xl transition shadow-sm flex-shrink-0">
+                    <button @click="scrollToCategory('signature')" class="bg-parjo-yellow text-parjo-ink hover:bg-white text-[11px] font-black px-3 py-1.5 rounded-xl transition shadow-sm flex-shrink-0">
                         Lihat Menu
                     </button>
                 </div>
@@ -198,10 +198,10 @@
                     <!-- Section Header with Editorial Numbering & Badge -->
                     <div class="flex items-baseline justify-between border-b-2 border-stone-300 pb-1.5 mb-3">
                         <div class="flex items-baseline space-x-2">
-                            <span class="font-display font-black text-sm text-parjo-orange uppercase tracking-wider" x-text="cat.name"></span>
-                            <span class="text-[10px] font-bold text-stone-400 uppercase tracking-widest font-mono">/ <span x-text="cat.sublabel"></span></span>
+                            <span class="font-black text-sm text-parjo-orange uppercase tracking-wider" x-text="cat.name"></span>
+                            <span class="text-[10px] font-bold text-stone-400 uppercase tracking-widest font-semibold">/ <span x-text="cat.sublabel"></span></span>
                         </div>
-                        <span class="text-[10px] font-bold text-stone-500 font-mono" x-text="getCategoryProducts(cat.id).length + ' MENU'"></span>
+                        <span class="text-[10px] font-bold text-stone-500 font-semibold" x-text="getCategoryProducts(cat.id).length + ' MENU'"></span>
                     </div>
 
                     <!-- Items Grid / Rows -->
@@ -225,10 +225,10 @@
                                 <div @click="openProductModal(item)" class="flex-1 min-w-0 cursor-pointer pr-1">
                                     <div class="flex items-center space-x-1.5">
                                         <h3 class="font-bold text-xs text-parjo-ink leading-snug group-hover:text-parjo-orange transition truncate" x-text="item.name"></h3>
-                                        <span x-show="item.badge" class="bg-orange-100 text-parjo-orange text-[9px] font-black px-1.5 py-0.2 rounded font-mono" x-text="item.badge"></span>
+                                        <span x-show="item.badge" class="bg-orange-100 text-parjo-orange text-[9px] font-black px-1.5 py-0.2 rounded font-semibold" x-text="item.badge"></span>
                                     </div>
                                     <p class="text-[11px] text-stone-500 line-clamp-1 mt-0.5 leading-tight" x-text="item.desc"></p>
-                                    <div class="font-display font-extrabold text-xs text-stone-900 mt-1" x-text="formatRupiah(item.price)"></div>
+                                    <div class="font-extrabold text-xs text-stone-900 mt-1" x-text="formatRupiah(item.price)"></div>
                                 </div>
 
                                 <!-- High-Contrast Action Button -->
@@ -275,12 +275,12 @@
 
                 <!-- Middle: Total Price -->
                 <div @click="goToView('cart')" class="flex-1 px-3 py-2 flex flex-col justify-center cursor-pointer">
-                    <span class="text-[9px] text-stone-400 font-mono uppercase tracking-wider">TOTAL TAGIHAN</span>
-                    <span class="font-display font-black text-sm text-white leading-none mt-0.5" x-text="formatRupiah(cartSubtotal)"></span>
+                    <span class="text-[9px] text-stone-400 font-semibold uppercase tracking-wider">TOTAL TAGIHAN</span>
+                    <span class="font-black text-sm text-white leading-none mt-0.5" x-text="formatRupiah(cartSubtotal)"></span>
                 </div>
 
                 <!-- Right: Check Out Action -->
-                <button @click="goToView('cart')" class="bg-parjo-orange hover:bg-parjo-darkorange px-5 py-2 flex items-center justify-center font-display font-black text-xs uppercase tracking-wider text-white transition active:scale-95 space-x-1.5">
+                <button @click="goToView('cart')" class="bg-parjo-orange hover:bg-parjo-darkorange px-5 py-2 flex items-center justify-center font-black text-xs uppercase tracking-wider text-white transition active:scale-95 space-x-1.5">
                     <span>CHECK OUT</span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
@@ -300,8 +300,8 @@
                     <i class="fa-solid fa-arrow-left text-xs"></i>
                 </button>
                 <div>
-                    <h1 class="font-display font-black text-sm text-parjo-ink">Ringkasan Pesanan</h1>
-                    <p class="text-[10px] text-stone-400 font-mono">MEJA #<span x-text="tableNumber"></span> • PARJO ORDER</p>
+                    <h1 class="font-black text-sm text-parjo-ink">Ringkasan Pesanan</h1>
+                    <p class="text-[10px] text-stone-400 font-semibold">MEJA #<span x-text="tableNumber"></span> • PARJO ORDER</p>
                 </div>
             </div>
             <button @click="clearCartConfirm()" class="text-xs text-red-500 font-bold hover:underline">
@@ -312,7 +312,7 @@
         <div class="p-4 space-y-4 flex-1">
             <!-- Dine-in vs Take-away Selector -->
             <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-subtle">
-                <label class="block text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider mb-1.5">TIPE PEMESANAN</label>
+                <label class="block text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider mb-1.5">TIPE PEMESANAN</label>
                 <div class="grid grid-cols-2 gap-2">
                     <button type="button" @click="orderType = 'dine-in'"
                             :class="orderType === 'dine-in' ? 'bg-parjo-ink text-white font-bold' : 'bg-stone-50 text-stone-600 border border-stone-200 font-medium'"
@@ -330,14 +330,14 @@
             <!-- Official Add-on Selector -->
             <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-subtle">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider">TAMBAHAN RESMI PARJO</span>
-                    <span class="text-[9px] bg-parjo-yellow text-parjo-darkgreen font-black px-1.5 py-0.2 rounded font-mono">TOPPING</span>
+                    <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider">TAMBAHAN RESMI PARJO</span>
+                    <span class="text-[9px] bg-parjo-yellow text-parjo-darkgreen font-black px-1.5 py-0.2 rounded font-semibold">TOPPING</span>
                 </div>
                 <div class="flex space-x-2 overflow-x-auto no-scrollbar pb-1">
                     <template x-for="addon in addOnList" :key="addon.name">
                         <div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex-shrink-0 w-32 flex flex-col justify-between">
                             <span class="text-xs font-bold text-stone-800 truncate" x-text="addon.name"></span>
-                            <span class="font-display font-black text-xs text-parjo-orange mt-0.5" x-text="formatRupiah(addon.price)"></span>
+                            <span class="font-black text-xs text-parjo-orange mt-0.5" x-text="formatRupiah(addon.price)"></span>
                             <button @click="quickAddAddon(addon)" class="mt-2 bg-white border border-stone-300 hover:border-parjo-orange hover:text-parjo-orange text-[10px] font-bold py-1 rounded-lg transition">
                                 + Tambah
                             </button>
@@ -348,14 +348,14 @@
 
             <!-- Ordered Items List -->
             <div class="bg-white rounded-2xl border border-stone-200 p-3.5 shadow-subtle">
-                <span class="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider block mb-3">ITEM DALAM TIKET (<span x-text="cartTotalItems"></span>)</span>
+                <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider block mb-3">ITEM DALAM TIKET (<span x-text="cartTotalItems"></span>)</span>
                 
                 <div class="divide-y divide-stone-100">
                     <template x-for="item in cart" :key="item.cartId">
                         <div class="py-3 first:pt-0 last:pb-0 flex items-start justify-between">
                             <div class="flex-1 pr-2">
                                 <h4 class="font-bold text-xs text-parjo-ink" x-text="item.name"></h4>
-                                <div class="font-display font-black text-xs text-parjo-orange mt-0.5" x-text="formatRupiah(item.price)"></div>
+                                <div class="font-black text-xs text-parjo-orange mt-0.5" x-text="formatRupiah(item.price)"></div>
                                 
                                 <div x-show="item.notes" class="text-[10px] text-stone-500 bg-stone-50 p-1.5 rounded-lg mt-1 border border-stone-100">
                                     <i class="fa-solid fa-pen-fancy text-parjo-orange mr-1 text-[8px]"></i>
@@ -372,7 +372,7 @@
                                 <button @click="updateCartQty(item, -1)" class="w-5 h-5 rounded-lg bg-white text-stone-600 hover:text-red-600 font-bold text-xs flex items-center justify-center shadow-xs">
                                     <i class="fa-solid" :class="item.qty === 1 ? 'fa-trash-can text-red-500 text-[10px]' : 'fa-minus text-[10px]'"></i>
                                 </button>
-                                <span class="text-xs font-black text-parjo-ink w-4 text-center font-display" x-text="item.qty"></span>
+                                <span class="text-xs font-black text-parjo-ink w-4 text-center font-bold" x-text="item.qty"></span>
                                 <button @click="updateCartQty(item, 1)" class="w-5 h-5 rounded-lg bg-parjo-orange text-white font-bold text-xs flex items-center justify-center hover:bg-parjo-darkorange shadow-xs">+</button>
                             </div>
                         </div>
@@ -381,7 +381,7 @@
             </div>
 
             <!-- Receipt Breakdown -->
-            <div class="bg-white rounded-2xl border border-stone-200 p-3.5 space-y-2 text-xs shadow-subtle font-mono">
+            <div class="bg-white rounded-2xl border border-stone-200 p-3.5 space-y-2 text-xs shadow-subtle font-semibold">
                 <div class="flex justify-between text-stone-600">
                     <span>Subtotal Menu</span>
                     <span class="font-bold text-stone-900" x-text="formatRupiah(cartSubtotal)"></span>
@@ -394,7 +394,7 @@
                     <span>Potongan Kupon (<span x-text="appliedVoucher.code"></span>)</span>
                     <span x-text="'-' + formatRupiah(discountAmount)"></span>
                 </div>
-                <div class="pt-2 border-t border-stone-200 flex justify-between font-black text-sm text-parjo-ink font-display">
+                <div class="pt-2 border-t border-stone-200 flex justify-between font-black text-sm text-parjo-ink font-bold">
                     <span>TOTAL PEMBAYARAN</span>
                     <span class="text-parjo-orange text-base" x-text="formatRupiah(finalTotal)"></span>
                 </div>
@@ -405,10 +405,10 @@
         <div class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-[#FDFBF7] border-t border-stone-200 p-3.5 shadow-lg z-30">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-[9px] text-stone-400 font-mono uppercase">TOTAL AKHIR</span>
-                    <div class="font-display font-black text-lg text-parjo-orange leading-none mt-0.5" x-text="formatRupiah(finalTotal)"></div>
+                    <span class="text-[9px] text-stone-400 font-semibold uppercase">TOTAL AKHIR</span>
+                    <div class="font-black text-lg text-parjo-orange leading-none mt-0.5" x-text="formatRupiah(finalTotal)"></div>
                 </div>
-                <button @click="goToView('checkout')" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-display font-black text-xs px-7 py-3 rounded-xl transition shadow-hard-orange active:scale-95 flex items-center space-x-1.5">
+                <button @click="goToView('checkout')" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-black text-xs px-7 py-3 rounded-xl transition shadow-hard-orange active:scale-95 flex items-center space-x-1.5">
                     <span>Lanjut Bayar</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </button>
@@ -427,15 +427,15 @@
                 <i class="fa-solid fa-arrow-left text-xs"></i>
             </button>
             <div>
-                <h1 class="font-display font-black text-sm text-parjo-ink">Konfirmasi Tiket & Bayar</h1>
-                <p class="text-[10px] text-stone-400 font-mono">PARJO ORDER SYSTEM</p>
+                <h1 class="font-black text-sm text-parjo-ink">Konfirmasi Tiket & Bayar</h1>
+                <p class="text-[10px] text-stone-400 font-semibold">PARJO ORDER SYSTEM</p>
             </div>
         </header>
 
         <div class="p-4 space-y-4 flex-1">
             <!-- Customer Information Form -->
             <div class="bg-white rounded-2xl border border-stone-200 p-3.5 space-y-3 shadow-subtle">
-                <span class="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider block">IDENTITAS PEMESAN</span>
+                <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider block">IDENTITAS PEMESAN</span>
                 
                 <div>
                     <label class="block text-xs font-bold text-stone-700 mb-1">Nama Panggilan / Lengkap <span class="text-red-500">*</span></label>
@@ -454,7 +454,7 @@
                 <div>
                     <label class="block text-xs font-bold text-stone-700 mb-1">Nomor Meja</label>
                     <input type="number" x-model="tableNumber"
-                           class="w-24 bg-stone-50 border border-stone-200 text-xs font-display font-black text-center rounded-xl px-3 py-2">
+                           class="w-24 bg-stone-50 border border-stone-200 text-xs font-black text-center rounded-xl px-3 py-2">
                 </div>
             </div>
 
@@ -462,7 +462,7 @@
             <div class="bg-white rounded-2xl border border-stone-200 p-3.5 flex items-center justify-between shadow-subtle">
                 <div>
                     <span class="text-xs font-bold text-stone-800 block">Kupon Hemat Anak Kos</span>
-                    <span class="text-[10px] text-stone-400 font-mono" x-text="appliedVoucher ? appliedVoucher.code + ' AKTIF' : 'Klaim potongan harga'"></span>
+                    <span class="text-[10px] text-stone-400 font-semibold" x-text="appliedVoucher ? appliedVoucher.code + ' AKTIF' : 'Klaim potongan harga'"></span>
                 </div>
                 <button @click="openVoucherModal()" class="text-xs font-bold px-3 py-1.5 rounded-xl border border-parjo-orange text-parjo-orange hover:bg-parjo-orange hover:text-white transition">
                     <span x-text="appliedVoucher ? 'Hapus' : 'Pilih Kupon'"></span>
@@ -471,7 +471,7 @@
 
             <!-- Payment Methods -->
             <div class="bg-white rounded-2xl border border-stone-200 p-3.5 space-y-2.5 shadow-subtle">
-                <span class="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider block">METODE PEMBAYARAN</span>
+                <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider block">METODE PEMBAYARAN</span>
                 
                 <label class="flex items-center justify-between p-3 rounded-xl border border-stone-200 cursor-pointer transition" :class="paymentMethod === 'qris' ? 'border-parjo-orange bg-orange-50/50' : ''">
                     <div class="flex items-center space-x-2.5">
@@ -481,7 +481,7 @@
                             <span class="text-[10px] text-stone-500">GoPay, Shopee, BCA, Dana</span>
                         </div>
                     </div>
-                    <span class="text-[9px] bg-emerald-100 text-emerald-800 font-black px-1.5 py-0.5 rounded font-mono">INSTAN</span>
+                    <span class="text-[9px] bg-emerald-100 text-emerald-800 font-black px-1.5 py-0.5 rounded font-semibold">INSTAN</span>
                 </label>
 
                 <label class="flex items-center justify-between p-3 rounded-xl border border-stone-200 cursor-pointer transition" :class="paymentMethod === 'cashier' ? 'border-parjo-orange bg-orange-50/50' : ''">
@@ -492,7 +492,7 @@
                             <span class="text-[10px] text-stone-500">Bayar ke AA saat makanan selesai</span>
                         </div>
                     </div>
-                    <span class="text-[9px] bg-stone-100 text-stone-600 font-black px-1.5 py-0.5 rounded font-mono">TUNAI</span>
+                    <span class="text-[9px] bg-stone-100 text-stone-600 font-black px-1.5 py-0.5 rounded font-semibold">TUNAI</span>
                 </label>
             </div>
         </div>
@@ -501,10 +501,10 @@
         <div class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-[#FDFBF7] border-t border-stone-200 p-3.5 shadow-lg z-30">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-[9px] text-stone-400 font-mono uppercase">TOTAL AKHIR</span>
-                    <div class="font-display font-black text-lg text-parjo-orange leading-none mt-0.5" x-text="formatRupiah(finalTotal)"></div>
+                    <span class="text-[9px] text-stone-400 font-semibold uppercase">TOTAL AKHIR</span>
+                    <div class="font-black text-lg text-parjo-orange leading-none mt-0.5" x-text="formatRupiah(finalTotal)"></div>
                 </div>
-                <button @click="processPayment()" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-display font-black text-xs px-8 py-3 rounded-xl transition shadow-hard-orange active:scale-95">
+                <button @click="processPayment()" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-black text-xs px-8 py-3 rounded-xl transition shadow-hard-orange active:scale-95">
                     Kirim Pesanan
                 </button>
             </div>
@@ -546,15 +546,15 @@
 
                 <div class="p-4 space-y-4">
                     <div>
-                        <span class="text-[10px] font-mono font-bold text-parjo-orange uppercase tracking-wider" x-text="selectedProduct?.catName"></span>
-                        <h2 class="font-display font-black text-base text-parjo-ink leading-snug mt-0.5" x-text="selectedProduct?.name"></h2>
-                        <div class="font-display font-black text-lg text-parjo-ink mt-1" x-text="formatRupiah(selectedProduct?.price || 0)"></div>
+                        <span class="text-[10px] font-semibold font-bold text-parjo-orange uppercase tracking-wider" x-text="selectedProduct?.catName"></span>
+                        <h2 class="font-black text-base text-parjo-ink leading-snug mt-0.5" x-text="selectedProduct?.name"></h2>
+                        <div class="font-black text-lg text-parjo-ink mt-1" x-text="formatRupiah(selectedProduct?.price || 0)"></div>
                         <p class="text-xs text-stone-500 mt-2 leading-relaxed" x-text="selectedProduct?.desc"></p>
                     </div>
 
                     <!-- Preset Chips Pilihan Rasa Parjo -->
                     <div class="pt-2 border-t border-stone-100">
-                        <label class="block text-[11px] font-mono font-bold text-stone-400 uppercase tracking-wider mb-2">PILIHAN CEPAT KOKI</label>
+                        <label class="block text-[11px] font-semibold font-bold text-stone-400 uppercase tracking-wider mb-2">PILIHAN CEPAT KOKI</label>
                         <div class="flex flex-wrap gap-1.5 mb-2.5">
                             <template x-for="chip in quickNotesList" :key="chip">
                                 <button type="button" @click="appendNote(chip)" 
@@ -571,10 +571,10 @@
 
                     <!-- Stepper -->
                     <div class="flex items-center justify-between pt-2 border-t border-stone-100">
-                        <span class="text-xs font-display font-black text-parjo-ink">Jumlah Porsi</span>
+                        <span class="text-xs font-black text-parjo-ink">Jumlah Porsi</span>
                         <div class="flex items-center space-x-3 bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl">
                             <button @click="if(modalQty > 1) modalQty--" class="text-xs font-bold text-stone-600 hover:text-parjo-orange px-1">-</button>
-                            <span class="text-sm font-display font-black w-6 text-center text-parjo-ink" x-text="modalQty"></span>
+                            <span class="text-sm font-black w-6 text-center text-parjo-ink" x-text="modalQty"></span>
                             <button @click="modalQty++" class="text-xs font-bold text-parjo-orange px-1">+</button>
                         </div>
                     </div>
@@ -583,7 +583,7 @@
 
             <!-- Sticky Bottom Add -->
             <div class="absolute bottom-0 left-0 right-0 p-3.5 bg-white border-t border-stone-200 z-20">
-                <button @click="addModalToCart()" class="w-full bg-parjo-orange hover:bg-parjo-darkorange text-white font-display font-black text-xs py-3.5 rounded-xl transition shadow-hard-orange flex items-center justify-between px-5 active:scale-98">
+                <button @click="addModalToCart()" class="w-full bg-parjo-orange hover:bg-parjo-darkorange text-white font-black text-xs py-3.5 rounded-xl transition shadow-hard-orange flex items-center justify-between px-5 active:scale-98">
                     <span>Tambahkan ke Pesanan</span>
                     <span x-text="formatRupiah((selectedProduct?.price || 0) * modalQty)"></span>
                 </button>
@@ -597,7 +597,7 @@
     <div x-show="activeMenuBookModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/80 backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
             <div class="p-3 border-b border-stone-200 flex items-center justify-between bg-white">
-                <h3 class="font-display font-black text-xs text-parjo-ink">Buku Menu Cetak Asli (Hal <span x-text="currentMenuPage"></span>/3)</h3>
+                <h3 class="font-black text-xs text-parjo-ink">Buku Menu Cetak Asli (Hal <span x-text="currentMenuPage"></span>/3)</h3>
                 <button @click="activeMenuBookModal = false" class="text-stone-500 hover:text-stone-800 text-sm">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -622,10 +622,10 @@
     <div x-show="activeVoucherModal" x-transition class="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs">
         <div @click.away="activeVoucherModal = false" class="w-full max-w-[480px] bg-white rounded-t-3xl overflow-hidden max-h-[80vh] flex flex-col p-4 shadow-2xl">
             <div class="flex items-center justify-between border-b border-stone-100 pb-2.5">
-                <h3 class="font-display font-black text-xs text-parjo-ink uppercase">VOUCHER DISKON MAHASISWA</h3>
+                <h3 class="font-black text-xs text-parjo-ink uppercase">VOUCHER DISKON MAHASISWA</h3>
                 <button @click="activeVoucherModal = false" class="text-stone-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="py-3 space-y-2 overflow-y-auto flex-1 font-mono">
+            <div class="py-3 space-y-2 overflow-y-auto flex-1 font-semibold">
                 <template x-for="v in availableVouchers" :key="v.code">
                     <div @click="applyVoucher(v)" class="border rounded-xl p-3 cursor-pointer flex items-center justify-between"
                          :class="appliedVoucher?.code === v.code ? 'border-parjo-orange bg-orange-50/50' : 'border-stone-200'">
@@ -650,15 +650,15 @@
                 <i class="fa-solid fa-check"></i>
             </div>
             <div>
-                <h3 class="font-display font-black text-base text-parjo-ink">Tiket Pesanan Diterima!</h3>
+                <h3 class="font-black text-base text-parjo-ink">Tiket Pesanan Diterima!</h3>
                 <p class="text-xs text-stone-500 mt-1">Dapur PARJO sedang memasak pesanan Meja <span class="font-bold text-parjo-ink" x-text="tableNumber"></span>.</p>
             </div>
-            <div class="bg-stone-50 p-3 rounded-xl text-left text-xs space-y-1 font-mono border border-stone-200">
+            <div class="bg-stone-50 p-3 rounded-xl text-left text-xs space-y-1 font-semibold border border-stone-200">
                 <div class="flex justify-between text-stone-500"><span>ORDER TICKET:</span><span class="font-bold text-stone-900" x-text="lastOrderId"></span></div>
                 <div class="flex justify-between text-stone-500"><span>ATAS NAMA:</span><span class="font-bold text-stone-900" x-text="customer.name"></span></div>
                 <div class="flex justify-between text-stone-500"><span>TOTAL:</span><span class="font-bold text-parjo-orange" x-text="formatRupiah(finalTotal)"></span></div>
             </div>
-            <button @click="resetAndBackToHome()" class="w-full bg-parjo-ink text-white font-display font-black py-3 rounded-xl text-xs uppercase tracking-wider transition">
+            <button @click="resetAndBackToHome()" class="w-full bg-parjo-ink text-white font-black py-3 rounded-xl text-xs uppercase tracking-wider transition">
                 Pesan Menu Lainnya
             </button>
         </div>
