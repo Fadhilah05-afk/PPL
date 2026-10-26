@@ -328,25 +328,6 @@
                 </div>
             </div>
 
-            <!-- Official Add-on Selector -->
-            <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-subtle">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider">TAMBAHAN RESMI PARJO</span>
-                    <span class="text-[9px] bg-parjo-yellow text-parjo-darkgreen font-black px-1.5 py-0.2 rounded font-semibold">TOPPING</span>
-                </div>
-                <div class="flex space-x-2 overflow-x-auto no-scrollbar pb-1">
-                    <template x-for="addon in addOnList" :key="addon.name">
-                        <div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex-shrink-0 w-32 flex flex-col justify-between">
-                            <span class="text-xs font-bold text-stone-800 truncate" x-text="addon.name"></span>
-                            <span class="font-black text-xs text-parjo-orange mt-0.5" x-text="formatRupiah(addon.price)"></span>
-                            <button @click="quickAddAddon(addon)" class="mt-2 bg-white border border-stone-300 hover:border-parjo-orange hover:text-parjo-orange text-[10px] font-bold py-1 rounded-lg transition">
-                                + Tambah
-                            </button>
-                        </div>
-                    </template>
-                </div>
-            </div>
-
             <!-- Ordered Items List -->
             <div class="bg-white rounded-2xl border border-stone-200 p-3.5 shadow-subtle">
                 <span class="text-[10px] font-semibold font-bold text-stone-400 uppercase tracking-wider block mb-3">ITEM DALAM TIKET (<span x-text="cartTotalItems"></span>)</span>
