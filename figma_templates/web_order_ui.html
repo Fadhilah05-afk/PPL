@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARJO UI Kit â€” Web Order (Figma Import Ready)</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parjo: {
+                            orange: '#FF4800',
+                            darkorange: '#E03E00',
+                            green: '#00583E',
+                            darkgreen: '#003F2C',
+                            yellow: '#EEFD37',
+                            ink: '#1C1917',
+                            muted: '#78716C',
+                            sand: '#FDFBF7',
+                            border: '#E7E5E4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #1C1917',
+                        'hard-sm': '2px 2px 0px 0px #1C1917',
+                        'hard-orange': '3px 3px 0px 0px #B83200',
+                        'subtle': '0 4px 20px -2px rgba(0,0,0,0.05)',
+                        'float': '0 12px 32px -4px rgba(0,0,0,0.12)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F3F4F6;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <!-- Header UI Title for Figma -->
+    <div class="max-w-7xl mx-auto mb-8 text-center md:text-left">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-parjo-yellow/30 border border-parjo-yellow text-parjo-darkgreen text-xs font-black uppercase tracking-wider mb-2">
+            <span>PARJO DESIGN SYSTEM</span>
+            <span>â€¢</span>
+            <span>FIGMA READY UI</span>
+        </div>
+        <h1 class="text-3xl font-black text-parjo-ink">Mobile Self-Ordering System (ESB Order Style)</h1>
+        <p class="text-stone-500 text-sm mt-1">Template HTML statis 3 layar (Katalog Menu, Review Keranjang, dan Struk Digital) siap diimport ke Figma.</p>
+    </div>
+
+    <!-- 3 Mobile Screens Container (Side-by-Side for Figma Frame Artboards) -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 1: KATALOG MENU UTAMA -->
+        <!-- ========================================================= -->
+        <div class="w-full max-w-[420px] mx-auto bg-[#FDFBF7] rounded-[36px] shadow-2xl border-4 border-stone-800 overflow-hidden flex flex-col relative">
+            
+            <!-- Phone Notch & Status Bar -->
+            <div class="bg-parjo-green text-white px-6 pt-3 pb-2 flex items-center justify-between text-[11px] font-bold">
+                <span>09:41</span>
+                <div class="w-24 h-4 bg-stone-900 rounded-full mx-auto -mt-1"></div>
+                <div class="flex items-center space-x-1.5">
+                    <i class="fa-solid fa-signal text-[10px]"></i>
+                    <i class="fa-solid fa-wifi text-[10px]"></i>
+                    <i class="fa-solid fa-battery-full text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Table Indicator Strip -->
+            <div class="bg-parjo-green text-white px-4 py-2 flex items-center justify-between text-xs border-b border-parjo-darkgreen">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-parjo-yellow animate-pulse"></span>
+                    <span class="font-extrabold tracking-wider uppercase text-[11px]">MEJA #05 â€¢ DINE-IN</span>
+                </div>
+                <span class="text-[10px] text-emerald-200 font-medium">Auto-Detect Meja</span>
+            </div>
+
+            <!-- Master Header -->
+            <header class="sticky top-0 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-stone-200 px-4 py-3 flex items-center justify-between z-20">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-parjo-orange text-white flex items-center justify-center font-black text-xl shadow-hard border-2 border-parjo-ink">
+                        <span>P</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <h2 class="font-black text-base text-parjo-ink leading-none">PARJO</h2>
+                            <span class="bg-parjo-yellow text-parjo-darkgreen text-[9px] font-black uppercase px-1.5 py-0.5 rounded border border-parjo-darkgreen/30">PANCONG & BURJO</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mt-0.5 font-medium">Bahan Segar â€¢ <span class="text-parjo-orange font-bold">Harga Mahasiswa</span></p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <button class="w-9 h-9 rounded-xl bg-white border border-stone-200 flex items-center justify-center text-stone-700 shadow-xs">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </button>
+                    <button class="h-9 px-2.5 rounded-xl bg-white border border-stone-200 text-stone-800 font-bold text-xs flex items-center space-x-1">
+                        <i class="fa-solid fa-book-open text-xs text-parjo-orange"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="p-4 space-y-4 pb-28 overflow-y-auto">
+                
+                <!-- Hero Promo Banner -->
+                <div class="rounded-2xl bg-gradient-to-r from-parjo-orange to-amber-500 p-4 text-white shadow-hard border-2 border-parjo-ink relative overflow-hidden">
+                    <span class="bg-parjo-yellow text-parjo-ink text-[10px] font-black uppercase px-2 py-0.5 rounded-full font-mono">SPESIAL HARI INI</span>
+                    <h3 class="font-black text-lg mt-1.5 leading-tight">Nasi Ayam Kuah Laos + Es Teh Gentong</h3>
+                    <p class="text-xs text-orange-100 mt-1">Paket Komplit Kenyang Hemat cuma Rp 20.000!</p>
+                </div>
+
+                <!-- Category Horizontal Scroll Bar -->
+                <div class="flex space-x-2 overflow-x-auto pb-1 pt-1 no-scrollbar">
+                    <button class="px-3.5 py-1.5 rounded-xl bg-parjo-ink text-white font-black text-xs whitespace-nowrap shadow-hard-sm">SIGNATURE</button>
+                    <button class="px-3.5 py-1.5 rounded-xl bg-white text-stone-700 border border-stone-200 font-bold text-xs whitespace-nowrap">BURJO & NASI</button>
+                    <button class="px-3.5 py-1.5 rounded-xl bg-white text-stone-700 border border-stone-200 font-bold text-xs whitespace-nowrap">INDOMIE</button>
+                    <button class="px-3.5 py-1.5 rounded-xl bg-white text-stone-700 border border-stone-200 font-bold text-xs whitespace-nowrap">PANCONG</button>
+                    <button class="px-3.5 py-1.5 rounded-xl bg-white text-stone-700 border border-stone-200 font-bold text-xs whitespace-nowrap">KOPI & TEH</button>
+                </div>
+
+                <!-- Section: SIGNATURE -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-black text-sm text-parjo-ink tracking-tight flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-sm bg-parjo-orange"></span>
+                            <span>SIGNATURE PARJO</span>
+                        </h4>
+                        <span class="text-[10px] font-bold text-stone-400 uppercase">Wajib Coba</span>
+                    </div>
+
+                    <!-- Product Card 1 -->
+                    <div class="bg-white p-3 rounded-2xl border-2 border-stone-200 hover:border-parjo-orange transition shadow-xs flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=200&q=80" class="w-24 h-24 rounded-xl object-cover border border-stone-200 flex-shrink-0" alt="Menu">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-amber-100 text-amber-800 text-[9px] font-black uppercase px-1.5 py-0.5 rounded">FAVORIT</span>
+                                <h5 class="font-bold text-xs text-parjo-ink mt-1">Nasi Ayam Kuah Laos</h5>
+                                <p class="text-[10px] text-stone-400 line-clamp-2 mt-0.5">Ayam bumbu khas kuah laos rempah gurih disajikan dengan nasi hangat dan lalapan.</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-xs text-parjo-orange">Rp 16.000</span>
+                                <button class="w-7 h-7 rounded-lg bg-parjo-orange text-white flex items-center justify-center shadow-hard-orange text-xs font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="bg-white p-3 rounded-2xl border-2 border-stone-200 hover:border-parjo-orange transition shadow-xs flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=200&q=80" class="w-24 h-24 rounded-xl object-cover border border-stone-200 flex-shrink-0" alt="Menu">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-rose-100 text-rose-800 text-[9px] font-black uppercase px-1.5 py-0.5 rounded">SIGNATURE</span>
+                                <h5 class="font-bold text-xs text-parjo-ink mt-1">Nasi Ayam Parjo Signature</h5>
+                                <p class="text-[10px] text-stone-400 line-clamp-2 mt-0.5">Menu andalan Parjo dengan racikan bumbu rahasia premium lengkap kerupuk & serundeng.</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-xs text-parjo-orange">Rp 20.000</span>
+                                <button class="w-7 h-7 rounded-lg bg-parjo-orange text-white flex items-center justify-center shadow-hard-orange text-xs font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 (Pancong) -->
+                    <div class="bg-white p-3 rounded-2xl border-2 border-stone-200 hover:border-parjo-orange transition shadow-xs flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80" class="w-24 h-24 rounded-xl object-cover border border-stone-200 flex-shrink-0" alt="Menu">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-purple-100 text-purple-800 text-[9px] font-black uppercase px-1.5 py-0.5 rounded">LUMER</span>
+                                <h5 class="font-bold text-xs text-parjo-ink mt-1">Pancong Choco Crunchy</h5>
+                                <p class="text-[10px] text-stone-400 line-clamp-2 mt-0.5">Kue pancong lumer setengah matang legit dengan taburan cokelat krispi melimpah.</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-xs text-parjo-orange">Rp 14.000</span>
+                                <button class="w-7 h-7 rounded-lg bg-parjo-orange text-white flex items-center justify-center shadow-hard-orange text-xs font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Sticky Bottom Floating Cart Bar -->
+            <div class="absolute bottom-4 left-4 right-4 bg-parjo-ink text-white rounded-2xl shadow-float flex items-stretch overflow-hidden border-2 border-stone-900 z-30">
+                <div class="bg-white text-parjo-ink px-4 py-3 flex items-center justify-center cursor-pointer relative flex-shrink-0 border-r border-stone-200">
+                    <i class="fa-solid fa-basket-shopping text-sm text-parjo-orange"></i>
+                    <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-parjo-orange text-white text-[10px] font-black flex items-center justify-center">2</span>
+                </div>
+                <div class="flex-1 px-3 py-2.5 flex items-center justify-between cursor-pointer">
+                    <div>
+                        <span class="text-[9px] uppercase font-bold text-stone-400 block leading-tight">TOTAL (2 ITEM)</span>
+                        <span class="font-black text-sm text-parjo-yellow">Rp 30.000</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5 font-bold text-xs text-white">
+                        <span>Lihat Pesanan</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 2: REVIEW PESANAN & CHECKOUT -->
+        <!-- ========================================================= -->
+        <div class="w-full max-w-[420px] mx-auto bg-[#FDFBF7] rounded-[36px] shadow-2xl border-4 border-stone-800 overflow-hidden flex flex-col relative">
+            
+            <!-- Phone Notch & Status Bar -->
+            <div class="bg-white text-stone-900 px-6 pt-3 pb-2 flex items-center justify-between text-[11px] font-bold border-b border-stone-100">
+                <span>09:42</span>
+                <div class="w-24 h-4 bg-stone-900 rounded-full mx-auto -mt-1"></div>
+                <div class="flex items-center space-x-1.5">
+                    <i class="fa-solid fa-signal text-[10px]"></i>
+                    <i class="fa-solid fa-battery-full text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Header -->
+            <header class="bg-white border-b border-stone-200 px-4 py-3.5 flex items-center justify-between">
+                <div class="flex items-center space-x-2.5">
+                    <button class="w-8 h-8 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                    </button>
+                    <div>
+                        <h2 class="font-black text-sm text-parjo-ink leading-tight">Ringkasan Pesanan</h2>
+                        <p class="text-[10px] text-stone-400 font-semibold">MEJA #05 â€¢ PARJO ORDER</p>
+                    </div>
+                </div>
+                <button class="text-[11px] font-bold text-rose-500">Hapus Semua</button>
+            </header>
+
+            <!-- Checkout Content -->
+            <div class="p-4 space-y-4 pb-28 overflow-y-auto">
+                
+                <!-- Dine-in vs Take-away Selector -->
+                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-subtle">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">TIPE PEMESANAN</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button class="py-2 px-3 rounded-xl text-xs font-black bg-parjo-ink text-white flex items-center justify-center space-x-1.5 shadow-xs">
+                            <i class="fa-solid fa-utensils text-[10px] text-parjo-yellow"></i>
+                            <span>Makan di Meja</span>
+                        </button>
+                        <button class="py-2 px-3 rounded-xl text-xs font-semibold bg-stone-50 text-stone-600 border border-stone-200 flex items-center justify-center space-x-1.5">
+                            <i class="fa-solid fa-bag-shopping text-[10px]"></i>
+                            <span>Bawa Pulang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer Details Form -->
+                <div class="bg-white p-3.5 rounded-2xl border border-stone-200 shadow-subtle space-y-2.5">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider">DATA PEMESAN</label>
+                    <div>
+                        <input type="text" value="Dimas Pratama" class="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs font-semibold text-stone-800">
+                    </div>
+                    <div>
+                        <input type="text" value="081234567890" class="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs font-semibold text-stone-800">
+                    </div>
+                </div>
+
+                <!-- Cart Items List -->
+                <div class="bg-white p-3.5 rounded-2xl border border-stone-200 shadow-subtle space-y-3">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider">ITEM DIPESAN (2)</label>
+
+                    <div class="flex items-start justify-between border-b border-stone-100 pb-2.5 text-xs">
+                        <div class="flex-1 pr-2">
+                            <h5 class="font-bold text-stone-800">Nasi Ayam Kuah Laos</h5>
+                            <span class="text-[11px] font-black text-parjo-orange">Rp 16.000</span>
+                            <p class="text-[10px] text-stone-400 italic mt-0.5">Catatan: Pedas sedang, cabai dipisah</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-stone-100 px-2 py-1 rounded-lg">
+                            <span class="font-bold text-stone-600">-</span>
+                            <span class="font-black text-xs text-parjo-ink">1</span>
+                            <span class="font-bold text-stone-600">+</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start justify-between text-xs">
+                        <div class="flex-1 pr-2">
+                            <h5 class="font-bold text-stone-800">Pancong Choco Crunchy</h5>
+                            <span class="text-[11px] font-black text-parjo-orange">Rp 14.000</span>
+                            <p class="text-[10px] text-stone-400 italic mt-0.5">Catatan: Setengah matang lumer</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-stone-100 px-2 py-1 rounded-lg">
+                            <span class="font-bold text-stone-600">-</span>
+                            <span class="font-black text-xs text-parjo-ink">1</span>
+                            <span class="font-bold text-stone-600">+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="bg-white p-3.5 rounded-2xl border border-stone-200 shadow-subtle space-y-2">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider">METODE PEMBAYARAN</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button class="p-2.5 rounded-xl border-2 border-parjo-orange bg-orange-50/50 text-left">
+                            <i class="fa-solid fa-qrcode text-parjo-orange mb-1"></i>
+                            <p class="text-xs font-bold text-stone-800">QRIS Instant</p>
+                            <span class="text-[10px] text-stone-400">BCA, GoPay, OVO</span>
+                        </button>
+                        <button class="p-2.5 rounded-xl border border-stone-200 bg-stone-50 text-left">
+                            <i class="fa-solid fa-cash-register text-stone-600 mb-1"></i>
+                            <p class="text-xs font-bold text-stone-800">Bayar di Kasir</p>
+                            <span class="text-[10px] text-stone-400">Tunai / EDC</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sticky Bottom Checkout Action -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-4 shadow-lg z-30 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] text-stone-400 font-bold uppercase">TOTAL BAYAR</span>
+                    <div class="font-black text-lg text-parjo-orange">Rp 32.000</div>
+                    <span class="text-[9px] text-stone-400">Termasuk Layanan Rp 2.000</span>
+                </div>
+                <button class="bg-parjo-orange text-white font-black text-xs px-6 py-3 rounded-xl shadow-hard-orange">
+                    Kirim Pesanan
+                </button>
+            </div>
+
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 3: STRUK DIGITAL ORDER SUKSES (ESB STYLE) -->
+        <!-- ========================================================= -->
+        <div class="w-full max-w-[420px] mx-auto bg-[#FDFBF7] rounded-[36px] shadow-2xl border-4 border-stone-800 overflow-hidden flex flex-col relative">
+            
+            <!-- Phone Notch & Status Bar -->
+            <div class="bg-emerald-600 text-white px-6 pt-3 pb-2 flex items-center justify-between text-[11px] font-bold">
+                <span>09:43</span>
+                <div class="w-24 h-4 bg-stone-900 rounded-full mx-auto -mt-1"></div>
+                <div class="flex items-center space-x-1.5">
+                    <i class="fa-solid fa-signal text-[10px]"></i>
+                    <i class="fa-solid fa-battery-full text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Success Splash Bar -->
+            <div class="bg-emerald-600 text-white px-4 py-3 text-center space-y-1">
+                <div class="w-10 h-10 rounded-full bg-white text-emerald-600 flex items-center justify-center mx-auto text-lg shadow-sm">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-black text-sm">Pesanan Berhasil Masuk!</h4>
+                <p class="text-[11px] text-emerald-100">Dapur sedang mempersiapkan hidangan Anda.</p>
+            </div>
+
+            <!-- Digital Receipt Scrollable Slip -->
+            <div class="p-4 space-y-3 pb-20 overflow-y-auto">
+                
+                <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-subtle space-y-3 font-mono text-xs">
+                    
+                    <div class="text-center border-b border-dashed border-stone-300 pb-3">
+                        <span class="font-black text-lg text-parjo-ink tracking-widest font-sans">PARJO</span>
+                        <p class="text-[10px] text-stone-400 font-sans">Pancong & Burjo Digital Order</p>
+                        <div class="mt-2 inline-block bg-stone-100 px-3 py-1 rounded-lg border border-stone-200 font-mono font-black text-xs text-parjo-orange">
+                            PRJ-1027-8K2Q
+                        </div>
+                    </div>
+
+                    <div class="text-[10px] space-y-1 border-b border-dashed border-stone-300 pb-3">
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Waktu Order:</span>
+                            <span class="font-bold text-stone-700">27 Oct 2026, 09:42</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Pemesan:</span>
+                            <span class="font-bold text-stone-700">Dimas Pratama</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Nomor Meja:</span>
+                            <span class="font-bold text-parjo-green font-sans font-black">MEJA #05</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Pembayaran:</span>
+                            <span class="font-bold text-stone-700">QRIS Instant (LUNAS)</span>
+                        </div>
+                    </div>
+
+                    <!-- Items Breakdown -->
+                    <div class="space-y-2 border-b border-dashed border-stone-300 pb-3 text-[11px]">
+                        <div>
+                            <div class="flex justify-between font-bold">
+                                <span>1x Nasi Ayam Kuah Laos</span>
+                                <span>Rp 16.000</span>
+                            </div>
+                            <p class="text-[9px] text-stone-400 italic">* Pedas sedang, cabai dipisah</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-bold">
+                                <span>1x Pancong Choco Crunchy</span>
+                                <span>Rp 14.000</span>
+                            </div>
+                            <p class="text-[9px] text-stone-400 italic">* Setengah matang lumer</p>
+                        </div>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="space-y-1 text-[11px]">
+                        <div class="flex justify-between text-stone-500">
+                            <span>Subtotal</span>
+                            <span>Rp 30.000</span>
+                        </div>
+                        <div class="flex justify-between text-stone-500">
+                            <span>Biaya Layanan</span>
+                            <span>Rp 2.000</span>
+                        </div>
+                        <div class="flex justify-between font-black text-sm text-parjo-ink pt-2 border-t border-stone-200">
+                            <span>TOTAL BAYAR</span>
+                            <span class="text-parjo-orange font-sans">Rp 32.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Footer note -->
+                    <div class="text-center pt-2 text-[9px] text-stone-400 font-sans">
+                        <p class="font-bold text-stone-600">Terima kasih atas pesanan Anda!</p>
+                        <p>Tunjukkan Order ID ini ke kasir jika diperlukan.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Sticky Back to Home Button -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-4 shadow-lg z-30">
+                <button class="w-full py-3 rounded-xl bg-parjo-ink text-white font-bold text-xs flex items-center justify-center space-x-1.5 shadow-hard-sm">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                    <span>Kembali ke Menu Utama</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
