@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>PARJO (Pancong & Burjo) — Digital Ordering</title>
     
     <!-- Typography: Plus Jakarta Sans / Inter / Poppins (Clean, Crisp, Highly Readable) -->
@@ -139,6 +140,10 @@
                         <i class="fa-solid fa-book-open text-xs text-parjo-orange"></i>
                         <span class="hidden sm:inline">Dokumen</span>
                     </button>
+                    <a href="{{ route('kasir.dashboard') }}" class="h-9 px-2.5 rounded-xl bg-parjo-green hover:bg-parjo-darkgreen text-white font-bold text-xs transition flex items-center space-x-1.5 shadow-sm" title="Dashboard Kasir & Admin">
+                        <i class="fa-solid fa-cash-register text-xs text-parjo-yellow"></i>
+                        <span class="hidden sm:inline">Kasir</span>
+                    </a>
                 </div>
             </div>
 
@@ -486,8 +491,12 @@
                     <span class="text-[9px] text-stone-400 font-semibold uppercase">TOTAL AKHIR</span>
                     <div class="font-black text-lg text-parjo-orange leading-none mt-0.5" x-text="formatRupiah(finalTotal)"></div>
                 </div>
-                <button @click="processPayment()" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-black text-xs px-8 py-3 rounded-xl transition shadow-hard-orange active:scale-95">
-                    Kirim Pesanan
+                <button @click="processPayment()" :disabled="isSubmitting" class="bg-parjo-orange hover:bg-parjo-darkorange text-white font-black text-xs px-8 py-3 rounded-xl transition shadow-hard-orange active:scale-95 disabled:opacity-50 flex items-center space-x-2">
+                    <span x-show="!isSubmitting">Kirim Pesanan</span>
+                    <span x-show="isSubmitting" class="flex items-center space-x-1.5">
+                        <i class="fa-solid fa-spinner fa-spin text-xs"></i>
+                        <span>Memproses...</span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -880,6 +889,7 @@ function tasteParjoApp() {
         activeVoucherModal: false,
         appliedVoucher: null,
         showSuccessModal: false,
+        isSubmitting: false,
         lastOrderId: '',
         orderDateStr: '',
         confirmedCart: [],
@@ -1269,7 +1279,7 @@ function tasteParjoApp() {
             this.activeVoucherModal = false;
         },
 
-        processPayment() {
+        async processPayment() {
             this.formErrors = {};
             if (!this.customer.name.trim()) {
                 this.formErrors.name = 'Nama pemesan wajib diisi!';
@@ -1282,19 +1292,67 @@ function tasteParjoApp() {
                 return;
             }
 
-            const now = new Date();
-            const day = now.getDate();
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            
-            this.orderDateStr = `${day} ${month} ${year}, ${hours}:${minutes}`;
-            this.lastOrderId = 'PRJ' + Math.random().toString(36).substring(2, 9).toUpperCase();
-            this.confirmedCart = JSON.parse(JSON.stringify(this.cart));
-            this.confirmedTotal = this.finalTotal;
-            this.showSuccessModal = true;
+            if (this.isSubmitting) return;
+            this.isSubmitting = true;
+
+            const payload = {
+                customer_name: this.customer.name.trim(),
+                customer_phone: this.customer.phone.trim(),
+                customer_email: this.customer.email ? this.customer.email.trim() : null,
+                table_number: this.orderType === 'dine-in' ? this.tableNumber : null,
+                order_type: this.orderType,
+                payment_method: this.paymentMethod === 'cashier' ? 'Bayar di Kasir' : 'QRIS Instant',
+                subtotal: this.subtotal,
+                service_fee: this.serviceFee,
+                discount: this.discountAmount,
+                voucher_code: this.appliedVoucher ? this.appliedVoucher.code : null,
+                total_price: this.finalTotal,
+                notes: '',
+                items: this.cart.map(item => ({
+                    product_id: item.id || null,
+                    product_name: item.name,
+                    category: item.catName || null,
+                    price: item.price,
+                    quantity: item.qty,
+                    notes: item.notes || ''
+                }))
+            };
+
+            try {
+                const response = await fetch('/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    this.lastOrderId = data.order.order_code;
+                    this.orderDateStr = data.order.created_at_formatted;
+                    this.confirmedCart = JSON.parse(JSON.stringify(this.cart));
+                    this.confirmedTotal = this.finalTotal;
+                    this.showSuccessModal = true;
+                } else {
+                    alert('Gagal membuat pesanan: ' + (data.message || 'Silakan periksa kembali pesanan Anda.'));
+                }
+            } catch (err) {
+                console.error('Order creation error:', err);
+                const now = new Date();
+                const day = now.getDate();
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                this.orderDateStr = `${day} ${months[now.getMonth()]} ${now.getFullYear()}, ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                this.lastOrderId = 'PRJ' + Math.random().toString(36).substring(2, 9).toUpperCase();
+                this.confirmedCart = JSON.parse(JSON.stringify(this.cart));
+                this.confirmedTotal = this.finalTotal;
+                this.showSuccessModal = true;
+            } finally {
+                this.isSubmitting = false;
+            }
         },
 
         resetAndBackToHome() {
